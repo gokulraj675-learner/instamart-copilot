@@ -1,0 +1,3 @@
+{"order_id": "ORD-100048", "refund_inr": 128.25, "action": "ISSUED", "ts": "2026-10-29T15:00:27", "scenario_id": "S1"}
+{"order_id": "ORD-100067", "refund_inr": 135.0, "action": "ISSUED", "ts": "2026-10-29T15:00:27", "scenario_id": "S2"}
+{"order_id": "ORD-100145", "refund_inr": 1999.0, "action": "ESCALATED", "ts": "2026-10-29T15:00:27", "scenario_id": "S3"}

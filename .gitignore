@@ -1,0 +1,16 @@
+﻿# Virtual environments
+venv/
+.venv/
+env/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Environment variables & local test files
+.env
+verify_submission.py
+
+# OS specific files
+.DS_Store
+Thumbs.db

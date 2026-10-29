@@ -1,0 +1,34 @@
+{
+  "scenario_id": "S6",
+  "customer_id": "C0001",
+  "message": "Refund for order ORD-999999 please.",
+  "outcome": "NOT_FOUND",
+  "terminal_message": "NOT_FOUND: no such order.",
+  "iterations": 2,
+  "tokens_used": 146,
+  "elapsed_sec": 0.0,
+  "ledger_entries": [],
+  "trace": [
+    {
+      "iteration": 1,
+      "event": "TOOL_CALL",
+      "tool": "get_order",
+      "args": {
+        "order_id": "ORD-999999"
+      },
+      "result": {
+        "error": "Order 'ORD-999999' not found."
+      }
+    },
+    {
+      "iteration": 2,
+      "event": "STOP",
+      "content": "NOT_FOUND: no such order.",
+      "outcome": "NOT_FOUND"
+    }
+  ],
+  "expected_outcome": "NOT_FOUND",
+  "expected_refund": 0.0,
+  "outcome_match": true,
+  "status": "COMPLETED"
+}

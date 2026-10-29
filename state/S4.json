@@ -1,0 +1,79 @@
+{
+  "scenario_id": "S4",
+  "customer_id": "C0001",
+  "message": "Please refund order ORD-100001, I did not like the delivery.",
+  "outcome": "DENIED",
+  "terminal_message": "DENIED: delivery was within 45 minutes.",
+  "iterations": 4,
+  "tokens_used": 988,
+  "elapsed_sec": 0.0,
+  "ledger_entries": [],
+  "trace": [
+    {
+      "iteration": 1,
+      "event": "TOOL_CALL",
+      "tool": "get_order",
+      "args": {
+        "order_id": "ORD-100001"
+      },
+      "result": {
+        "order_id": "ORD-100001",
+        "customer_id": "C0001",
+        "status": "completed",
+        "order_amount": 109.65,
+        "delivery_minutes": 20.0
+      }
+    },
+    {
+      "iteration": 2,
+      "event": "TOOL_CALL",
+      "tool": "search_policy",
+      "args": {
+        "query": "refund policy late delivery"
+      },
+      "result": {
+        "result": "Refund Policy. A refund can be requested only for orders whose status is completed. Orders with status cancelled were never charged, so no refund applies to them. If a completed order is delivered in more than 45 minutes, the customer | order is delivered in more than 45 minutes, the customer receives a full refund of the order amount. If a completed order is delivered in 45 minutes or less, no late-delivery refund is paid. Refunds up to INR 1000 are | late-delivery refund is paid. Refunds up to INR 1000 are approved automatically by the support system. A refund above INR 1000 must be approved by a human support lead before money is returned. Approved refunds are credited to the original",
+        "chunks": [
+          {
+            "source": "refund_policy.txt",
+            "chunk_id": 0,
+            "score": 0.2452
+          },
+          {
+            "source": "refund_policy.txt",
+            "chunk_id": 1,
+            "score": 0.2367
+          },
+          {
+            "source": "refund_policy.txt",
+            "chunk_id": 2,
+            "score": 0.2091
+          }
+        ]
+      }
+    },
+    {
+      "iteration": 3,
+      "event": "TOOL_CALL",
+      "tool": "calculate_refund",
+      "args": {
+        "order_amount": 109.65,
+        "delivery_minutes": 20.0
+      },
+      "result": {
+        "refund_inr": 0.0,
+        "reason": "Delivery took 20.0 min (<=45 min threshold) -> no refund"
+      }
+    },
+    {
+      "iteration": 4,
+      "event": "STOP",
+      "content": "DENIED: delivery was within 45 minutes.",
+      "outcome": "DENIED"
+    }
+  ],
+  "expected_outcome": "DENIED",
+  "expected_refund": 0.0,
+  "outcome_match": true,
+  "status": "COMPLETED"
+}
